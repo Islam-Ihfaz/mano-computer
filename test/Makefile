@@ -5,7 +5,7 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES = tt_um_islam_ihfaz_mano_computer.v OpDecoder.v TimeDecoder.v Logic.v
 
 ifneq ($(GATES),yes)
 
