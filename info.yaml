@@ -36,23 +36,23 @@ pinout:
   ui[7]: "clock"
 
   # Outputs
-  uo[0]: "A"
-  uo[1]: "A"
-  uo[2]: "A"
-  uo[3]: "A"
-  uo[4]: "A"
-  uo[5]: "A"
-  uo[6]: "A"
-  uo[7]: "A"
+  uo[0]: "x1"
+  uo[1]: "x2"
+  uo[2]: "x3"
+  uo[3]: "x4"
+  uo[4]: "x5"
+  uo[5]: "x6"
+  uo[6]: "x7"
+  uo[7]: "t0"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
+  uio[0]: "t1"
+  uio[1]: "t2"
+  uio[2]: "t3"
+  uio[3]: "t4"
+  uio[4]: "q1"
+  uio[5]: "q2"
+  uio[6]: "q3"
   uio[7]: ""
 
 # Do not change!
