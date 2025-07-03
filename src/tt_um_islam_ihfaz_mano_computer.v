@@ -41,6 +41,7 @@ module tt_um_islam_ihfaz_mano_computer(
     assign uio_out[6] = q3;
     assign uio_out[7] = 0;
 
+    assign uio_oe  = 8'b0;
 
     reg SysClk = 0;
     reg [7:0] mem[0:8];
@@ -101,12 +102,6 @@ module tt_um_islam_ihfaz_mano_computer(
             SysClk <= ~SysClk;
         end
     end
-
-    // Output the accumulator value
-    assign uo_out = A;
-
-    assign uio_out = 8'b0;
-    assign uio_oe  = 8'b0;
 
     // List all unused inputs to prevent warnings
     wire _unused = &{ena, clk, rst_n, ui_in[6:2], uio_in, 1'b0};
