@@ -6,13 +6,14 @@
 `default_nettype none
 
 module tt_um_islam_ihfaz_mano_computer(
-    input  [7:0] ui_in,    // {clock, IR[1:0], 5 unused}
-    output [7:0] uo_out,   // {A[7:0]}
-    input  [7:0] uio_in,
-    output [7:0] uio_out,
-    output [7:0] uio_oe,
-    input clk,
-    input rst_n
+    input wire [7:0] ui_in,    // {clock, IR[1:0], 5 unused}
+    output wire [7:0] uo_out,   // {A[7:0]}
+    input wire [7:0] uio_in,
+    output wire [7:0] uio_out,
+    output wire [7:0] uio_oe,
+    input wire ena,
+    input wire clk,
+    input wire rst_n
 );
 
     wire clock = ui_in[7];
