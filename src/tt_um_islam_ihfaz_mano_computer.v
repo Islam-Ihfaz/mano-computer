@@ -23,6 +23,25 @@ module tt_um_islam_ihfaz_mano_computer(
     wire t0, t1, t2, t3, t4, x1, x2, x3, x4, x5, x6, x7, q1, q2, q3;
     wire t5, t6, t7, x8;
 
+    assign uo_out[0] = x1;
+    assign uo_out[1] = x2;
+    assign uo_out[2] = x3; 
+    assign uo_out[3] = x4; 
+    assign uo_out[4] = x5; 
+    assign uo_out[5] = x6; 
+    assign uo_out[6] = x7; 
+    assign uo_out[7] = t0;
+
+    assign uio_out[0] = t1;
+    assign uio_out[1] = t2;
+    assign uio_out[2] = t3;
+    assign uio_out[3] = t4;
+    assign uio_out[4] = q1;
+    assign uio_out[5] = q2;
+    assign uio_out[6] = q3;
+    assign uio_out[7] = 0;
+
+
     reg SysClk = 0;
     reg [7:0] mem[0:8];
     reg [7:0] MAR = 0, MBR = 0, IR = 0, A = 0, R = 0, PC = 0;
