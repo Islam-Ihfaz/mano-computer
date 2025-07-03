@@ -29,7 +29,7 @@ module tt_um_islam_ihfaz_mano_computer(
     reg [25:0] count = 0;
 
     // Instruction decoder
-    OpDecoder opl(.ir0(IR_input[0]), .ir1(IR_input[1]), .q1(q1), .q2(q2), .q3(q3));
+    OpDecoder opl(.ir0(IR0), .ir1(IR1), .q1(q1), .q2(q2), .q3(q3));
 
     // Timing decoder
     TimeDecoder tmr1(.t(T), .t0(t0), .t1(t1), .t2(t2), .t3(t3), .t4(t4),
