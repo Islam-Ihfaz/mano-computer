@@ -18,7 +18,7 @@ module tt_um_islam_ihfaz_mano_computer(
 
     wire clock = ui_in[7];
     wire IR0 = ui_in[0];
-    wire IR1 = ui_in[1]
+    wire IR1 = ui_in[1];
 
     wire t0, t1, t2, t3, t4, x1, x2, x3, x4, x5, x6, x7, q1, q2, q3;
     wire t5, t6, t7, x8;
