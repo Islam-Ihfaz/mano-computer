@@ -5,9 +5,9 @@
 
 `default_nettype none
 
-module tt_um_islam_ihfaz_mano_computer(
+module tt_um_islam_ihfaz_mano_computer (
     input wire [7:0] ui_in,    // {clock, IR[1:0], 5 unused}
-    output wire [7:0] uo_out,   // {A[7:0]}
+    output wire [7:0] uo_out,  // {A[7:0]}
     input wire [7:0] uio_in,
     output wire [7:0] uio_out,
     output wire [7:0] uio_oe,
@@ -44,10 +44,10 @@ module tt_um_islam_ihfaz_mano_computer(
     assign uio_oe  = 8'b0;
 
     reg SysClk = 0;
-    reg [7:0] mem[0:8];
-    reg [7:0] MAR = 0, MBR = 0, IR = 0, A = 0, R = 0, PC = 0;
-    reg [2:0] T = 0;
-    reg [25:0] count = 0;
+    reg [7:0] mem[0:8], MAR, MBR, IR, A, R, PC;
+    reg [2:0] T;
+    reg reset;
+    //reg [25:0] count = 0;
 
     // Instruction decoder
     OpDecoder opl(.ir0(IR0), .ir1(IR1), .q1(q1), .q2(q2), .q3(q3));
@@ -64,35 +64,45 @@ module tt_um_islam_ihfaz_mano_computer(
     );
 
     // Reset logic
-    always @(negedge rst_n) begin
-        SysClk <= 0;
+    always @(negedge reset) begin
+        SysClk = 0;
+        MAR = 0;
+        MBR = 0;
+        PC <= 8'b00000000;
+        IR = 0;
+        A = 0;
+        R = 0;
+        T = 0;
+        
+        /*SysClk <= 0;
         MAR <= 0;
         MBR <= 0;
         PC <= 0;
         IR <= 0;
         A <= 0;
         R <= 0;
-        T <= 0;
+        T <= 0;*/
     end
 
     // Micro-operations
     always @(posedge x1 or posedge x2)
-        if (x1) MAR <= PC;
-        else    MAR <= MBR;
+        if (x1) MAR = PC;
+        else    MAR = MBR;
 
-    always @(posedge x3) PC <= PC + 1;
-    always @(posedge x4) MBR <= mem[MAR];
+    always @(posedge x3) PC = PC + 1;
+    always @(posedge x4) MBR = mem[MAR];
 
     always @(posedge x5 or posedge x6)
-        if (x5) A <= MBR;
-        else    A <= R;
+        if (x5) A = MBR;
+        else    A = R;
 
-    always @(posedge x7) T <= 3'b000;
+    always @(posedge x7) T = 3'b000;
 
     always @(posedge SysClk)
-        if (!x7) T <= T + 1;
+        if (!x7) T = T + 1;
 
-    always @(posedge x8) IR <= MBR;
+    always @(posedge x8) IR = MBR;
+    reg [25:0] count = 0;
 
     // Clock divider to generate SysClk from user clock
     always @(posedge clock) begin
@@ -102,6 +112,11 @@ module tt_um_islam_ihfaz_mano_computer(
             SysClk <= ~SysClk;
         end
     end
+
+    initial begin
+        reset = 1;
+        #10;
+        reset = 0;
 
     // List all unused inputs to prevent warnings
     wire _unused = &{ena, clk, rst_n, ui_in[6:2], uio_in, 1'b0};
